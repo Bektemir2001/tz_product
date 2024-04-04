@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductRequest;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function store(ProductRequest $request)
     {
-
-    }
-
-    public function create()
-    {
-
-    }
-
-    public function store()
-    {
-
+        $data = $request->validated();
+        dd($data);
     }
 }

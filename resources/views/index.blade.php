@@ -1,92 +1,117 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Product</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        ul.breadcrumb li+li::before {
+            content: "\276F";
+            padding-left: 8px;
+            padding-right: 4px;
+            color: inherit;
+        }
 
-    <link rel="stylesheet" href="{{asset('assets/global.css')}}" />
-    <link rel="stylesheet" href="{{asset('assets/index.css')}}" />
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-    />
-    <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap"
-    />
+        ul.breadcrumb li span {
+            opacity: 60%;
+        }
+
+        #sidebar {
+            -webkit-transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
+            transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
+        }
+
+        #sidebar.show {
+            transform: translateX(0);
+        }
+
+        #sidebar ul li a.active {
+            background: #1f2937;
+            background-color: #1f2937;
+        }
+    </style>
+
 </head>
 <body>
-<div class="button">
-    <div class="hero-heading-left-wrapper">
-        <div class="hero-heading-left">
-            <div class="container">
-                <div class="column">
-                    <div class="actions">
-                        <div class="button1">
-                            <div class="get-started">GET STARTED</div>
+
+<div class="flex h-screen bg-gray-100">
+
+    <!-- sidebar -->
+    <div class="hidden md:flex flex-col w-64 bg-gray-800">
+        <div class="flex flex-col flex-1 overflow-y-auto">
+            <div class="bg-white p-4 w-20 rounded-br-lg">
+                @include('includes.icon')
+            </div>
+            <nav class="flex-1 px-2 py-4 bg-gray-800">
+                <a href="#" class="flex items-center px-4 py-2 text-gray-100 hover:bg-gray-700">
+                    Продукты
+                </a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="flex flex-col flex-1 overflow-y-auto relative">
+        <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+            <div class="flex items-center px-4">
+                <a class="text-red-500 inline-block">Продукты</a>
+            </div>
+            <div class="flex items-center pr-4">
+                <p class="text-base">Bektemir</p>
+            </div>
+        </div>
+        <div class="absolute top-16 left-4" style="width: 80px; height: 3px;">
+            <hr class="bg-red-500 border-none h-1">
+        </div>
+        <div class="flex">
+
+            <!-- Правая часть с таблицей -->
+            <div class="w-2/3 p-4">
+                <div class="flex flex-col">
+                    <div class="-m-1.5 overflow-x-auto">
+                        <div class="p-1.5 min-w-full inline-block align-middle">
+                            <div class="border rounded-lg shadow overflow-hidden">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-gray-200">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">АРТИКУЛ</th>
+                                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">НАЗВАНИЕ</th>
+                                        <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-gray-500 uppercase">СТАТУС</th>
+                                        <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-gray-500 uppercase">АТРИБУТЫ</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-10">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">John Brown</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">45</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
+                                            <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none">Delete</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="column1">
-                    <div class="image-wrapper">
-                        <img class="image-icon" alt="" src="{{asset('assets/public/image@2x.png')}}" />
-                    </div>
+            </div>
+
+            <!-- Левая часть с кнопкой -->
+            <div class="w-1/3 p-4 flex justify-end">
+                <div class="relative">
+                    <button class="inline-flex items-center h-10 px-9 text-xs text-white transition-colors duration-150 bg-[#1da1f2]/90 rounded-lg focus:shadow-outline hover:bg-blue-[#1da1f2]/90" style="text-align: center; border-radius: 10px; width: 132px;" data-modal-toggle="default-modal">
+                        <span>Добавить</span>
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-    <main class="main">
-        <div class="div">ПРОДУКТЫ</div>
-        <div class="div1">Иванов Иван Иванович</div>
-        <section class="rectangle-parent">
-            <div class="frame-child"></div>
-            <div class="rectangle-group">
-                <div class="frame-item"></div>
-                <div class="enterprise-resource-planning-container">
-                    <p class="enterprise">Enterprise</p>
-                    <p class="resource">Resource</p>
-                    <p class="planning">Planning</p>
-                </div>
-                <div class="div2">Продукты</div>
-                <div class="rectangle-container">
-                    <div class="frame-inner"></div>
-                    <img class="icon" alt="" src="{{asset('assets/public/.svg')}}" />
-                </div>
-            </div>
-            <div class="frame-div">
-                <div class="rectangle-div"></div>
-                <div class="line-div"></div>
-                <div class="frame-child1"></div>
-                <div class="frame-child2"></div>
-                <div class="div3">АРТИКУЛ</div>
-                <div class="mtokb2-parent">
-                    <div class="mtokb2">mtokb2</div>
-                    <div class="mtok-b2216-1kt3645-k">MTOK-B2/216-1KT3645-K</div>
-                    <div class="div4">Доступен</div>
-                    <div class="div5">Цвет: черный</div>
-                    <div class="l">Размер: L</div>
-                </div>
-                <div class="rectangle-wrapper">
-                    <div class="frame-child3"></div>
-                </div>
-                <div class="mtokb3-parent">
-                    <div class="mtokb3">mtokb3</div>
-                    <div class="mtok-b3216-1kt3645-k">MTOK-B3/216-1KT3645-K</div>
-                    <div class="div6">Не доступен</div>
-                    <div class="div7">Цвет: серый</div>
-                    <div class="l1">Размер: ХL</div>
-                </div>
-                <div class="div8">НАЗВАНИЕ</div>
-                <div class="div9">СТАТУС</div>
-                <div class="div10">АТРИБУТЫ</div>
-                <button class="button2">
-                    <div class="child"></div>
-                    <div class="div11">Добавить</div>
-                </button>
-            </div>
-            <div class="div12"></div>
-        </section>
-    </main>
+
+    @include('includes.create_modal')
 </div>
 </body>
 </html>
