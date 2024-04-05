@@ -33,7 +33,7 @@ class ProductRequest extends FormRequest
     public function messages()
     {
         return [
-            'article.regex' => 'Поле должно содержать только латинские символы и цифры.',
+            'article.regex' => 'The field must contain only Latin characters and numbers.',
         ];
     }
 

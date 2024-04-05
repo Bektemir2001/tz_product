@@ -3,13 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
-use Illuminate\Http\Request;
+use App\Services\ProductService;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
-    public function store(ProductRequest $request)
+    protected ProductService $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
+    public function store(ProductRequest $request): Response
     {
         $data = $request->validated();
-        dd($data);
+        $result = $this->productService->store($data);
+        return response($result)->setStatusCode($result['status']);
     }
 }

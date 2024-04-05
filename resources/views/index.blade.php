@@ -38,7 +38,6 @@
 <body>
 
 <div class="flex h-screen bg-gray-100">
-
     <!-- sidebar -->
     <div class="hidden md:flex flex-col w-64 bg-gray-800">
         <div class="flex flex-col flex-1 overflow-y-auto">
@@ -84,14 +83,19 @@
                                     </tr>
                                     </thead>
                                     <tbody class="divide-y divide-gray-10">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">John Brown</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">45</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">New York No. 1 Lake Park</td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-                                            <button type="button" class="inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none">Delete</button>
-                                        </td>
-                                    </tr>
+                                    @foreach($products as $product)
+                                        <tr onclick="showData({{json_encode($product->toArray())}})">
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-800">{{$product->article}}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{$product->name}}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">{{$product->status}}</td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                                @foreach($product->data as $key => $item)
+                                                    {{$key.": ".$item}}
+                                                    <br>
+                                                @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -103,15 +107,19 @@
             <!-- Левая часть с кнопкой -->
             <div class="w-1/3 p-4 flex justify-end">
                 <div class="relative">
-                    <button class="inline-flex items-center h-10 px-9 text-xs text-white transition-colors duration-150 bg-[#1da1f2]/90 rounded-lg focus:shadow-outline hover:bg-blue-[#1da1f2]/90" style="text-align: center; border-radius: 10px; width: 132px;" data-modal-toggle="default-modal">
+                    <button class="inline-flex items-center h-10 px-9 text-xs text-white transition-colors duration-150 bg-[#1da1f2]/90 rounded-lg focus:shadow-outline hover:bg-blue-[#1da1f2]/90" style="text-align: center; border-radius: 10px; width: 132px;" data-modal-toggle="create-modal">
                         <span>Добавить</span>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-
+    @include('includes.show_modal')
     @include('includes.create_modal')
 </div>
+
+<script>
+
+</script>
 </body>
 </html>
