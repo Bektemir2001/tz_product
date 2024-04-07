@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -32,6 +33,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function canEditArticle()
+    {
+        return $this->role === config('products.role');
+    }
     /**
      * Get the attributes that should be cast.
      *

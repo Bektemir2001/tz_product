@@ -7,36 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Product</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        ul.breadcrumb li+li::before {
-            content: "\276F";
-            padding-left: 8px;
-            padding-right: 4px;
-            color: inherit;
-        }
-
-        ul.breadcrumb li span {
-            opacity: 60%;
-        }
-
-        #sidebar {
-            -webkit-transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
-            transition: all 300ms cubic-bezier(0, 0.77, 0.58, 1);
-        }
-
-        #sidebar.show {
-            transform: translateX(0);
-        }
-
-        #sidebar ul li a.active {
-            background: #1f2937;
-            background-color: #1f2937;
-        }
-    </style>
-
+    <link href="{{asset('assets/css/style.css')}}">
 </head>
 <body>
-
 <div class="flex h-screen bg-gray-100">
     <!-- sidebar -->
     <div class="hidden md:flex flex-col w-64 bg-gray-800">
@@ -54,16 +27,18 @@
 
     <!-- Main content -->
     <div class="flex flex-col flex-1 overflow-y-auto relative">
-        <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
-            <div class="flex items-center px-4">
-                <a class="text-red-500 inline-block">Продукты</a>
+        <div>
+            <div class="flex items-center justify-between h-16 bg-white border-b border-gray-200">
+                <div class="flex items-center px-4">
+                    <a class="text-red-500 inline-block">Продукты</a>
+                </div>
+                <div class="flex items-center pr-4">
+                    <p class="text-base">{{auth()->user()->name}}</p>
+                </div>
             </div>
-            <div class="flex items-center pr-4">
-                <p class="text-base">Bektemir</p>
+            <div class="absolute top-16 left-4" style="width: 80px; height: 3px;">
+                <hr class="bg-red-500 border-none h-1">
             </div>
-        </div>
-        <div class="absolute top-16 left-4" style="width: 80px; height: 3px;">
-            <hr class="bg-red-500 border-none h-1">
         </div>
         <div class="flex">
 
@@ -107,7 +82,7 @@
             <!-- Левая часть с кнопкой -->
             <div class="w-1/3 p-4 flex justify-end">
                 <div class="relative">
-                    <button class="inline-flex items-center h-10 px-9 text-xs text-white transition-colors duration-150 bg-[#1da1f2]/90 rounded-lg focus:shadow-outline hover:bg-blue-[#1da1f2]/90" style="text-align: center; border-radius: 10px; width: 132px;" data-modal-toggle="create-modal">
+                    <button class="inline-flex items-center h-10 px-9 text-xs text-white transition-colors duration-150 bg-[#1da1f2]/90 rounded-lg focus:shadow-outline hover:bg-blue-[#1da1f2]/90" style="text-align: center; border-radius: 10px; width: 132px;" data-modal-toggle="create-modal" id="openCreateModel">
                         <span>Добавить</span>
                     </button>
                 </div>

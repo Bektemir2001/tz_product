@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ProductRequest extends FormRequest
+class UpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|min:10|max:255',
-            'article' => 'required|unique:products|regex:/^[a-zA-Z0-9]+$/',
+            'article' => 'required|unique:products,article,' . $this->route('product')->id . '|regex:/^[a-zA-Z0-9]+$/',
             'status' => 'required',
             'data' => 'nullable'
         ];
